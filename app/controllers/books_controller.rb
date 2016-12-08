@@ -5,4 +5,9 @@ class BooksController < BlocWorks::Controller
     # conotrollers must call 'render'.
     render :welcome, book: "Eloquent Ruby"
   end
+
+  # This returns all of Book instances.
+  def index
+    render :index, books: Book.all
+  end
 end
