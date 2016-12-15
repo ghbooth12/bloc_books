@@ -1,3 +1,5 @@
+require 'pry'
+
 class BooksController < BlocWorks::Controller
   def welcome
     @book = "Eloquent Ruby"
@@ -20,7 +22,7 @@ class BooksController < BlocWorks::Controller
     name = book_params["name"]
     author = book_params["author"]
     pages = book_params["pages"]
-
+    # binding.pry
     Book.create({"name"=>name, "author"=>author, "pages"=>pages})
   end
 
@@ -34,7 +36,7 @@ class BooksController < BlocWorks::Controller
     name = book_params["name"]
     author = book_params["author"]
     pages = book_params["pages"]
-
+    binding.pry
     @book.update_attributes(name: name, author: author, pages: pages)
   end
 
