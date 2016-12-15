@@ -1,39 +1,45 @@
 class BooksController < BlocWorks::Controller
   def welcome
-    puts "\n<bloc-books/app/book_controller.rb> ()::BooksController.welcome"
-    # When all data is ready and the view should display the result,
-    # controllers must call 'render'.
-    render :welcome, book: "Eloquent Ruby"
+    @book = "Eloquent Ruby"
   end
 
-  # This returns all of Book instances.
   def index
-    puts "\n<bloc-books/app/book_controller.rb> ()::BooksController.index"
-    render :index, books: Book.all
+    @books = Book.all
   end
 
   def show
-    puts "\n<bloc-books/app/book_controller.rb> ()::BooksController.show\nparams: #{params}"
-    book = Book.find(params['id'])
-    render :show, book: book
+    @book = Book.find(params["id"])
   end
 
   def new
-    render :new, book: Book.new
+    @book = Book.new
   end
 
   def create
-    book = Book.new
-    book.name = params[:book][:name]
-    book.author = params[:book][:author]
-    book.pages = params[:book][:pages]
+    book_params = params["book"]
+    name = book_params["name"]
+    author = book_params["author"]
+    pages = book_params["pages"]
 
-    if book.save
-      puts "Saved!"
-      render :index, books: Book.all
-    else
-      puts "Failed"
-      render :new, book: Book.new
-    end
+    Book.create({"name"=>name, "author"=>author, "pages"=>pages})
+  end
+
+  def edit
+    @book = Book.find(params["id"])
+  end
+
+  def update
+    @book = Book.find(params["id"])
+    book_params = params["book"]
+    name = book_params["name"]
+    author = book_params["author"]
+    pages = book_params["pages"]
+
+    @book.update_attributes(name: name, author: author, pages: pages)
+  end
+
+  def delete
+    @book = Book.find(params["id"])
+    @book.destroy
   end
 end

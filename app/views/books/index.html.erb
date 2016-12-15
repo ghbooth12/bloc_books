@@ -4,5 +4,10 @@
   <p><b>Name: </b><%= book.name %></p>
   <p><b>Author: </b><%= book.author %></p>
   <p><b>Pages: </b><%= book.pages %></p>
+  <a href="/books/<%= book.id %>">Show</a> |
+  <a href="/books/edit?id=<%= book.id %>">Edit</a> |
+  <a href="/books/delete?id=<%= book.id %>">Delete</a>
   <br>
 <% end %>
+<br>
+<a href="/books/new">Create New Book</a>

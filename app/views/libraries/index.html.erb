@@ -1,0 +1,12 @@
+<h1>All libraries</h1>
+
+<% libraries.each do |library| %>
+  <p><b>Name: </b><%= library.name %></p>
+  <p><b>Year: </b><%= library.year %></p>
+  <a href="/libraries/<%= library.id %>">Show</a> |
+  <a href="/libraries/edit?id=<%= library.id %>">Edit</a> |
+  <a href="/libraries/delete?id=<%= library.id %>">Delete</a>
+  <br>
+<% end %>
+<br>
+<a href="/libraries/new">Create New Library</a>
