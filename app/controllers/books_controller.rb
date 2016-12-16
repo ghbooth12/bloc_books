@@ -22,8 +22,9 @@ class BooksController < BlocWorks::Controller
     name = book_params["name"]
     author = book_params["author"]
     pages = book_params["pages"]
-    # binding.pry
+
     Book.create({"name"=>name, "author"=>author, "pages"=>pages})
+    redirect("index", books: Book.all)
   end
 
   def edit
@@ -36,12 +37,14 @@ class BooksController < BlocWorks::Controller
     name = book_params["name"]
     author = book_params["author"]
     pages = book_params["pages"]
-    binding.pry
+    # binding.pry
     @book.update_attributes(name: name, author: author, pages: pages)
+    redirect("index", books: Book.all)
   end
 
   def delete
     @book = Book.find(params["id"])
     @book.destroy
+    redirect("index", books: Book.all)
   end
 end

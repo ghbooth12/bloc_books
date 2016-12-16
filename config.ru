@@ -1,4 +1,4 @@
-puts "\n<bloc-books/config.ru>\n"
+puts "<bloc-books/config.ru>"
 # '.ru' is the extenstion Rack uses to designate Rack configuration files.
 # 'rackup' command starts a rack server.
 # By default 'rackup' runs the code in 'config.ru'.
@@ -14,10 +14,9 @@ use Rack::ContentType
 # This is equivalent to "app.route(Proc.new {map("", "books#welcome")...})"
 app.route do
   map "", "books#welcome"
-  map ":controller/:id/:action"
-  map ":controller/:id", default: { "action" => "show" }
-  map ":controller", default: { "action" => "index" }
-  map ":controller/:action"
+
+  resources :books
+  resources :libraries
 end
 
 # app: #<BlocWorks::Application:0x007fddc4afa1c8>

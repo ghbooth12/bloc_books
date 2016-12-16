@@ -1,4 +1,4 @@
-puts "\n<bloc-books/config/application.rb>\n"
+puts "<bloc-books/config/application.rb>"
 require "bloc_works"
 
 # Load every controller in that directory
